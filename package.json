@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sharp": "latest"
+    "image-size": "^0.6.3",
+    "sharp": "^0.20.5"
   }
 }
