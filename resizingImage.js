@@ -16,16 +16,12 @@ exports.resize = (width, height, from, to, form, size) => {
         }
     };
 
-
     const rawFiles = fs.readdirSync(`${from}`);
-
 
     fs.mkdir(`./${to}`, function (err) {
         if (err) ;
         executeResize();
     });
-
-
 };
 
 
@@ -37,14 +33,10 @@ exports.resizeByPercent = (percent, from, to, form) => {
         for (let i = 0; i < rawFiles.length; i++) {
             const imageSize = sizeOf(`./${from}/${rawFiles[i]}`);
             widthList.push({
-                width:  imageSize.width,
+                width: imageSize.width,
                 height: imageSize.height
             });
-
         }
-
-        // console.log(widthList);
-        // console.log(widthList.length);
 
     };
 
@@ -52,17 +44,15 @@ exports.resizeByPercent = (percent, from, to, form) => {
     const executeResize = () => {
 
         for (let i = 0; i < rawFiles.length; i++) {
-
             const fileName = rawFiles[i].split('.')[0];
             console.log(fileName);
             sharp(`./${from}/${rawFiles[i]}`)
                 .rotate()
                 .resize(widthList[i].width * percent, widthList[i].height * percent)
                 .toFile(`./${to}/${fileName}_medium.${form}`)
-                .then(function(){
+                .then(function () {
                     console.log(i);
                 });
-
 
         }
 
